@@ -11,7 +11,7 @@ const loginReducer = (state = INITIAL_STATE, action) => {
     return { ...state };
   case types.TOKEN_REQUEST_SUCCESS:
     return {
-      ...state,
+      ...state, token: action.payload,
     };
   default:
     return state;
