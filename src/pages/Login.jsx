@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+import { func } from 'prop-types';
 import Input from '../components/Input';
+import fetchToken from '../APIs/fetchToken';
 
 class Login extends Component {
   constructor() {
@@ -11,6 +14,12 @@ class Login extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.validation = this.validation.bind(this);
+    this.saveToken = this.saveToken.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.saveToken();
   }
 
   validation() {
@@ -21,6 +30,17 @@ class Login extends Component {
       return false;
     }
     return true;
+  }
+
+  async saveToken() {
+    const data = await fetchToken();
+    localStorage.setItem('token', data.token);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    const { history } = this.props;
+    history.push('/game');
   }
 
   handleChange({ target }) {
@@ -50,6 +70,7 @@ class Login extends Component {
           type="button"
           data-testid="btn-play"
           disabled={ this.validation() }
+          onClick={ this.handleClick }
         >
           Jogar
         </button>
@@ -57,5 +78,9 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: func.isRequired,
+};
 
 export default Login;
