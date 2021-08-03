@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
-import { func } from 'prop-types';
+import { func, number, string, objectOf, oneOfType, object } from 'prop-types';
 import Input from '../components/Input';
 import fetchToken from '../APIs/fetchToken';
 
@@ -16,6 +16,7 @@ class Login extends Component {
     this.validation = this.validation.bind(this);
     this.saveToken = this.saveToken.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickConfig = this.handleClickConfig.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,11 @@ class Login extends Component {
   async saveToken() {
     const data = await fetchToken();
     localStorage.setItem('token', data.token);
+  }
+
+  handleClickConfig() {
+    const { history } = this.props;
+    history.push('/settings');
   }
 
   handleClick(e) {
@@ -74,13 +80,20 @@ class Login extends Component {
         >
           Jogar
         </button>
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ this.handleClickConfig }
+        >
+          Config
+        </button>
       </div>
     );
   }
 }
 
 Login.propTypes = {
-  history: func.isRequired,
+  history: objectOf(oneOfType([func, string, number, object])).isRequired,
 };
 
 export default Login;
