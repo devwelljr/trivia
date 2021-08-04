@@ -19,16 +19,16 @@ export const tokenRequestError = (payload) => ({
 });
 
 export const questionRequest = () => ({
-  type: types.QUESTION_REQUEST,
+  type: types.QUESTIONS_REQUEST,
 });
 
 export const questionRequestSuccess = (payload) => ({
-  type: types.QUESTION_REQUEST_SUCCESS,
+  type: types.QUESTIONS_REQUEST_SUCCESS,
   payload,
 });
 
 export const questionRequestError = (payload) => ({
-  type: types.QUESTION_REQUEST_ERROR,
+  type: types.QUESTIONS_REQUEST_ERROR,
   payload,
 });
 
