@@ -47,6 +47,8 @@ class Login extends Component {
     e.preventDefault();
     const { history } = this.props;
     history.push('/game');
+    const { name, email } = this.state;
+    localStorage.setItem('player', JSON.stringify({ name, email }));
   }
 
   handleChange({ target }) {
