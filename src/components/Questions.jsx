@@ -11,15 +11,19 @@ class Questions extends Component {
       // questions: [],
       idQuestion: 0,
       isAnswered: false,
+      time: 30,
     };
 
     this.findQuestion = this.findQuestion.bind(this);
     this.renderQuestion = this.renderQuestion.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.updateTime = this.updateTime.bind(this);
   }
 
   componentDidMount() {
+    const thousand = 1000;
     this.findQuestion();
+    setInterval(() => this.updateTime(), thousand);
   }
 
   async findQuestion() {
@@ -35,7 +39,21 @@ class Questions extends Component {
   handleClick() {
     this.setState({
       isAnswered: true,
+      time: 0,
     });
+  }
+
+  updateTime() {
+    const { time } = this.state;
+    if (time > 0) {
+      this.setState((state) => ({
+        time: state.time - 1,
+      }));
+    } else {
+      this.setState({
+        isAnswered: true,
+      });
+    }
   }
 
   renderQuestion() {
@@ -90,7 +108,7 @@ class Questions extends Component {
   }
 
   render() {
-    const { isAnswered } = this.state;
+    const { isAnswered, time } = this.state;
     const { questions } = this.props;
     const { results } = questions;
     return (
@@ -100,12 +118,14 @@ class Questions extends Component {
             results ? this.renderQuestion() : null
           }
         </div>
-        <div className="timer" />
+        <div className="timer">
+          {`Tempo: ${time}`}
+        </div>
         <button
           type="button"
           className="button-next"
           data-testid="btn-next"
-          disabled={ !isAnswered }
+          style={ !isAnswered ? { display: 'none' } : null }
         >
           Pŕoxima
         </button>
