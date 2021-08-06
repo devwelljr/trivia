@@ -18,9 +18,9 @@ export default class HeaderGame extends Component {
   }
 
   getPlayerFromLocalStorage() {
-    const playerString = localStorage.getItem('player');
-    const { name, email } = JSON.parse(playerString);
-    this.fetchAvatar(email);
+    const playerString = localStorage.getItem('state');
+    const { name, gravatarEmail } = JSON.parse(playerString).player;
+    this.fetchAvatar(gravatarEmail);
     return {
       name,
     };

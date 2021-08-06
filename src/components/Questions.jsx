@@ -8,38 +8,101 @@ class Questions extends Component {
     super();
 
     this.state = {
-      // questions: [],
       idQuestion: 0,
       isAnswered: false,
       time: 30,
+      result: 0,
+      player: {
+        name: '',
+        assertions: 0,
+        score: 0,
+        gravatarEmail: '',
+      },
     };
 
     this.findQuestion = this.findQuestion.bind(this);
     this.renderQuestion = this.renderQuestion.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.updateTime = this.updateTime.bind(this);
+    this.pointsCal = this.pointsCal.bind(this);
+    this.setLocalPlayer = this.setLocalPlayer.bind(this);
   }
 
   componentDidMount() {
     const thousand = 1000;
     this.findQuestion();
     setInterval(() => this.updateTime(), thousand);
+    // this.setLocalPlayer();
+  }
+
+  setLocalPlayer() {
+    const { player: jogador } = this.state;
+    localStorage.setItem('state', JSON.stringify({ player: jogador }));
   }
 
   async findQuestion() {
     const { getQuestions } = this.props;
     const tokenApi = localStorage.getItem('token');
     const response = await getQuestions(tokenApi);
-    // this.setState({
-    //   questions: response,
-    // });
+    const playerX = localStorage.getItem('state');
+    const { name, gravatarEmail } = JSON.parse(playerX).player;
+    console.log(name);
+    console.log(gravatarEmail);
+    console.log(JSON.parse(playerX));
+    this.setState({
+      player: {
+        assertions: 0,
+        score: 0,
+        name,
+        gravatarEmail },
+    });
     return response;
   }
 
-  handleClick() {
-    this.setState({
+  pointsCal(correct) {
+    const { time, idQuestion } = this.state;
+    const { questions: { results } } = this.props;
+    const { difficulty } = results[idQuestion];
+    const ten = 10;
+    let result = 0;
+    if (correct === 'true') {
+      switch (difficulty) {
+      case 'easy':
+        result = ten + (time * 1);
+        break;
+      case 'medium':
+        result = ten + (time * 2);
+        break;
+      case 'hard':
+        result = ten + (time * Number('3'));
+        break;
+      default:
+        console.log('erro no switch');
+      }
+      this.setState((prevState) => ({
+        player: {
+          ...prevState.player,
+          assertions: prevState.player.assertions + 1,
+        },
+      }));
+    }
+    return result;
+  }
+
+  handleClick(correct) {
+    const resultado = this.pointsCal(correct);
+    this.setState((prevState) => ({
       isAnswered: true,
       time: 0,
+      result: prevState.result + resultado,
+      player: {
+        ...prevState.player,
+        score: prevState.result + resultado,
+        assertions: prevState.player.assertions,
+      },
+    }), () => {
+      console.log(this.state);
+      this.setLocalPlayer();
     });
   }
 
@@ -99,7 +162,7 @@ class Questions extends Component {
           type="button"
           disabled={ isAnswered }
           style={ isAnswered ? styleCorrect : null }
-          onClick={ this.handleClick }
+          onClick={ () => this.handleClick('true') }
         >
           { correctAnswer }
         </button>
