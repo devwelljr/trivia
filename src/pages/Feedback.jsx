@@ -9,6 +9,7 @@ class Feedback extends Component {
     return (
       <div>
         <GameHeader />
+        <p data-testid="feedback-text">chegou</p>
         <ButtonToLogin history={ history } dataTestId="btn-play-again" />
       </div>
     );

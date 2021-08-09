@@ -18,11 +18,12 @@ export default class HeaderGame extends Component {
   }
 
   getPlayerFromLocalStorage() {
-    const playerString = localStorage.getItem('player');
-    const { name, email } = JSON.parse(playerString);
-    this.fetchAvatar(email);
+    const playerString = localStorage.getItem('state');
+    const { name, gravatarEmail, score } = JSON.parse(playerString).player;
+    this.fetchAvatar(gravatarEmail);
     return {
       name,
+      score,
     };
   }
 
@@ -35,7 +36,7 @@ export default class HeaderGame extends Component {
 
   render() {
     const { url } = this.state;
-    const { name } = this.getPlayerFromLocalStorage();
+    const { name, score } = this.getPlayerFromLocalStorage();
     return (
       <header>
         <img
@@ -44,7 +45,7 @@ export default class HeaderGame extends Component {
           src={ url }
         />
         <h3 data-testid="header-player-name">{ name }</h3>
-        <h4 data-testid="header-score">0</h4>
+        <h4 data-testid="header-score">{ score }</h4>
       </header>
     );
   }
