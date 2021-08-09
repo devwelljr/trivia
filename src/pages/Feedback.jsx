@@ -51,7 +51,7 @@ class Feedback extends Component {
 
         <div data-testid="feedback-text">{ text }</div>
         <div data-testid="feedback-total-score">{ score }</div>
-        <div data-testid="feedback-total-questions">{ assertions }</div>
+        <div data-testid="feedback-total-question">{ assertions }</div>
 
         <button
           data-testid="btn-ranking"
