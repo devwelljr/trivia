@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { fetchAPIQuestion } from '../redux/actions';
 
 class Questions extends Component {
@@ -12,6 +13,7 @@ class Questions extends Component {
       isAnswered: false,
       time: 30,
       result: 0,
+      shouldRedirect: false,
       player: {
         name: '',
         assertions: 0,
@@ -26,6 +28,7 @@ class Questions extends Component {
     this.updateTime = this.updateTime.bind(this);
     this.pointsCal = this.pointsCal.bind(this);
     this.setLocalPlayer = this.setLocalPlayer.bind(this);
+    this.nextQuestion = this.nextQuestion.bind(this);
   }
 
   componentDidMount() {
@@ -87,6 +90,21 @@ class Questions extends Component {
       }));
     }
     return result;
+  }
+
+  nextQuestion() {
+    const four = 4;
+    const { idQuestion } = this.state;
+    if (idQuestion === four) {
+      this.setState({
+        shouldRedirect: true,
+      });
+    }
+    this.setState((prevState) => ({
+      idQuestion: prevState.idQuestion + 1,
+      isAnswered: false,
+      time: 30,
+    }));
   }
 
   handleClick(correct) {
@@ -171,9 +189,11 @@ class Questions extends Component {
   }
 
   render() {
-    const { isAnswered, time } = this.state;
+    const { isAnswered, time, shouldRedirect } = this.state;
     const { questions } = this.props;
     const { results } = questions;
+
+    if (shouldRedirect) return <Redirect to="/feedback" />;
     return (
       <div>
         <div className="questions">
@@ -189,6 +209,7 @@ class Questions extends Component {
           className="button-next"
           data-testid="btn-next"
           style={ !isAnswered ? { display: 'none' } : null }
+          onClick={ this.nextQuestion }
         >
           Pŕoxima
         </button>
