@@ -11,6 +11,13 @@ class Feedback extends Component {
         <GameHeader />
         <p data-testid="feedback-text">chegou</p>
         <ButtonToLogin history={ history } dataTestId="btn-play-again" />
+        <button
+          data-testid="btn-ranking"
+          type="button"
+          onClick={ () => { history.push('/ranking'); } }
+        >
+          Ver Ranking
+        </button>
       </div>
     );
   }

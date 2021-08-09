@@ -7,6 +7,7 @@ class Ranking extends Component {
     const { history } = this.props;
     return (
       <div>
+        <h3 data-testid="ranking-title">Ranking</h3>
         <ButtonToLogin history={ history } dataTestId="btn-go-home" />
       </div>
     );
