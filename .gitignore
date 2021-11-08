@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
+.trybe
+.github
 
-cypress/screenshots/
-cypress/videos/
-cypress/reports/
+/cypress
