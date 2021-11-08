@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { func, number, string, objectOf, oneOfType, object } from 'prop-types';
 import Input from '../components/Input';
 import fetchToken from '../APIs/fetchToken';
+import ContainerLogin from '../styles/divLogin';
 
 class Login extends Component {
   constructor() {
@@ -61,7 +62,7 @@ class Login extends Component {
   render() {
     const { email, name } = this.state;
     return (
-      <div>
+      <ContainerLogin>
         <Input
           text="Nome: "
           value={ name }
@@ -91,7 +92,7 @@ class Login extends Component {
         >
           Config
         </button>
-      </div>
+      </ContainerLogin>
     );
   }
 }
