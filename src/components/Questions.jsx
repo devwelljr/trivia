@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -49,9 +50,6 @@ class Questions extends Component {
     const response = await getQuestions(tokenApi);
     const playerX = localStorage.getItem('state');
     const { name, gravatarEmail } = JSON.parse(playerX).player;
-    console.log(name);
-    console.log(gravatarEmail);
-    console.log(JSON.parse(playerX));
     this.setState({
       player: {
         assertions: 0,
@@ -119,7 +117,6 @@ class Questions extends Component {
         assertions: prevState.player.assertions,
       },
     }), () => {
-      console.log(this.state);
       this.setLocalPlayer();
     });
   }
@@ -145,10 +142,15 @@ class Questions extends Component {
     const { category, question, correct_answer: correctAnswer,
       incorrect_answers: incorrectAnswer,
       type } = results[idQuestion];
+    const fixedQuestion = question
+      .replace(/&quot;/gi, '')
+      .replace(/&#039;/gi, '')
+      .replace(/&eacute/gi, '')
+      .replace(/&amp/gi, '');
     return (
       <div>
-        <h4 data-testid="question-category">{ category }</h4>
-        <h3 data-testid="question-text">{ question }</h3>
+        <h4 className="text-decoration-underline">{ category }</h4>
+        <h3 data-testid="question-text">{ fixedQuestion }</h3>
         {
           type === 'boolean'
             ? (
@@ -195,7 +197,7 @@ class Questions extends Component {
 
     if (shouldRedirect) return <Redirect to="/feedback" />;
     return (
-      <div>
+      <>
         <div className="questions">
           {
             results ? this.renderQuestion() : null
@@ -213,7 +215,7 @@ class Questions extends Component {
         >
           Pŕoxima
         </button>
-      </div>
+      </>
     );
   }
 }

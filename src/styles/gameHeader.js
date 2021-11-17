@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
-const ContainerLogin = styled.main`
+const ContainerHeader = styled.header`
+  align-items: center;
   background-color: rgba(16, 158, 16, 0.8);
   border: black 1px solid;
   display: flex;
-  flex-direction: column;
-  height: 50%;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   text-align: center;
   margin: auto;
-  width: 400px;
 `;
 
-export default ContainerLogin;
+export default ContainerHeader;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import md5 from 'crypto-js/md5';
+import ContainerHeader from '../styles/gameHeader';
 
 export default class HeaderGame extends Component {
   constructor() {
@@ -38,7 +39,7 @@ export default class HeaderGame extends Component {
     const { url } = this.state;
     const { name, score } = this.getPlayerFromLocalStorage();
     return (
-      <header>
+      <ContainerHeader>
         <img
           data-testid="header-profile-picture"
           alt="profilePhoto"
@@ -46,7 +47,7 @@ export default class HeaderGame extends Component {
         />
         <h3 data-testid="header-player-name">{ name }</h3>
         <h4 data-testid="header-score">{ score }</h4>
-      </header>
+      </ContainerHeader>
     );
   }
 }

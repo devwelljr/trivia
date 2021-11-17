@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import GameHeader from '../components/GameHeader';
 import Questions from '../components/Questions';
+import ContainerGame from '../styles/divGame';
+import MainGame from '../styles/mainGame';
 
 class Game extends Component {
   render() {
     return (
-      <div>
+      <MainGame>
         <GameHeader />
-        <Questions />
-      </div>
+        <ContainerGame>
+          <Questions />
+        </ContainerGame>
+      </MainGame>
     );
   }
 }

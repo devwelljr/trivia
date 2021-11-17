@@ -1,0 +1,7 @@
+.divLogin {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 600px;
+  min-width: 100%;
+}

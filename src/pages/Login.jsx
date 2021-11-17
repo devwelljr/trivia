@@ -4,6 +4,7 @@ import { func, number, string, objectOf, oneOfType, object } from 'prop-types';
 import Input from '../components/Input';
 import fetchToken from '../APIs/fetchToken';
 import ContainerLogin from '../styles/divLogin';
+import '../styles/login.css';
 
 class Login extends Component {
   constructor() {
@@ -49,9 +50,12 @@ class Login extends Component {
     const { history } = this.props;
     history.push('/game');
     const { name, email } = this.state;
-    localStorage.setItem('state',
+    localStorage.setItem(
+      'state',
       JSON.stringify({
-        player: { name, assertions: 0, score: 0, gravatarEmail: email } }));
+        player: { name, assertions: 0, score: 0, gravatarEmail: email },
+      }),
+    );
   }
 
   handleChange({ target }) {
@@ -62,37 +66,33 @@ class Login extends Component {
   render() {
     const { email, name } = this.state;
     return (
-      <ContainerLogin>
-        <Input
-          text="Nome: "
-          value={ name }
-          onChange={ this.handleChange }
-          dataTestId="player-name"
-          id="name"
-        />
-        <Input
-          text="Email: "
-          value={ email }
-          onChange={ this.handleChange }
-          dataTestId="gravatar-email"
-          id="email"
-        />
-        <button
-          type="button"
-          data-testid="btn-play"
-          disabled={ this.validation() }
-          onClick={ this.handleClick }
-        >
-          Jogar
-        </button>
-        <button
-          type="button"
-          data-testid="btn-settings"
-          onClick={ this.handleClickConfig }
-        >
-          Config
-        </button>
-      </ContainerLogin>
+      <div className="divLogin">
+        <ContainerLogin>
+          <h1 className="fs-2 font-monospace text-decoration-underline">TRIVIA GAME</h1>
+          <Input
+            text="Nome: "
+            value={ name }
+            onChange={ this.handleChange }
+            dataTestId="player-name"
+            id="name"
+          />
+          <Input
+            text="Email: "
+            value={ email }
+            onChange={ this.handleChange }
+            dataTestId="gravatar-email"
+            id="email"
+          />
+          <button
+            type="button"
+            data-testid="btn-play"
+            disabled={ this.validation() }
+            onClick={ this.handleClick }
+          >
+            Jogar
+          </button>
+        </ContainerLogin>
+      </div>
     );
   }
 }
