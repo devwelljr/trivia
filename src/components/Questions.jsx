@@ -195,7 +195,7 @@ class Questions extends Component {
     const { questions } = this.props;
     const { results } = questions;
 
-    if (shouldRedirect) return <Redirect to="/feedback" />;
+    if (shouldRedirect) return <Redirect to="/trivia/feedback" />;
     return (
       <>
         <div className="questions">

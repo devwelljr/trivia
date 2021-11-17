@@ -53,13 +53,6 @@ class Feedback extends Component {
         <div data-testid="feedback-total-score">{ score }</div>
         <div data-testid="feedback-total-question">{ assertions }</div>
 
-        <button
-          data-testid="btn-ranking"
-          type="button"
-          onClick={ () => { history.push('/ranking'); } }
-        >
-          Ver Ranking
-        </button>
         <ButtonToLogin history={ history } dataTestId="btn-play-again" />
       </div>
     );

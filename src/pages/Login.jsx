@@ -40,15 +40,10 @@ class Login extends Component {
     localStorage.setItem('token', data.token);
   }
 
-  handleClickConfig() {
-    const { history } = this.props;
-    history.push('/settings');
-  }
-
   handleClick(e) {
     e.preventDefault();
     const { history } = this.props;
-    history.push('/game');
+    history.push('/trivia/game');
     const { name, email } = this.state;
     localStorage.setItem(
       'state',
