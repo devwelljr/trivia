@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/trivia/static/css/main.d483f28d.chunk.css",
-    "main.js": "/trivia/static/js/main.642b2c87.chunk.js",
-    "main.js.map": "/trivia/static/js/main.642b2c87.chunk.js.map",
+    "main.js": "/trivia/static/js/main.8c882e2b.chunk.js",
+    "main.js.map": "/trivia/static/js/main.8c882e2b.chunk.js.map",
     "runtime-main.js": "/trivia/static/js/runtime-main.6e763e45.js",
     "runtime-main.js.map": "/trivia/static/js/runtime-main.6e763e45.js.map",
     "static/css/2.e78a7c17.chunk.css": "/trivia/static/css/2.e78a7c17.chunk.css",
-    "static/js/2.dc5567b0.chunk.js": "/trivia/static/js/2.dc5567b0.chunk.js",
-    "static/js/2.dc5567b0.chunk.js.map": "/trivia/static/js/2.dc5567b0.chunk.js.map",
+    "static/js/2.639e9ea2.chunk.js": "/trivia/static/js/2.639e9ea2.chunk.js",
+    "static/js/2.639e9ea2.chunk.js.map": "/trivia/static/js/2.639e9ea2.chunk.js.map",
     "index.html": "/trivia/index.html",
-    "precache-manifest.d84b614ea82b65211edb9698bbdfc40c.js": "/trivia/precache-manifest.d84b614ea82b65211edb9698bbdfc40c.js",
+    "precache-manifest.f90f71ffe67e94f60a3cc02244fdadd2.js": "/trivia/precache-manifest.f90f71ffe67e94f60a3cc02244fdadd2.js",
     "service-worker.js": "/trivia/service-worker.js",
     "static/css/2.e78a7c17.chunk.css.map": "/trivia/static/css/2.e78a7c17.chunk.css.map",
     "static/css/main.d483f28d.chunk.css.map": "/trivia/static/css/main.d483f28d.chunk.css.map",
-    "static/js/2.dc5567b0.chunk.js.LICENSE": "/trivia/static/js/2.dc5567b0.chunk.js.LICENSE"
+    "static/js/2.639e9ea2.chunk.js.LICENSE": "/trivia/static/js/2.639e9ea2.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.6e763e45.js",
     "static/css/2.e78a7c17.chunk.css",
-    "static/js/2.dc5567b0.chunk.js",
+    "static/js/2.639e9ea2.chunk.js",
     "static/css/main.d483f28d.chunk.css",
-    "static/js/main.642b2c87.chunk.js"
+    "static/js/main.8c882e2b.chunk.js"
   ]
 }
