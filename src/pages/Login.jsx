@@ -18,7 +18,6 @@ class Login extends Component {
     this.validation = this.validation.bind(this);
     this.saveToken = this.saveToken.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleClickConfig = this.handleClickConfig.bind(this);
   }
 
   componentDidMount() {
